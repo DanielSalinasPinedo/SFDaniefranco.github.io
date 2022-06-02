@@ -6,7 +6,6 @@ const contPregunta = document.createElement("div");
 const contPreParrafo = document.createElement("p");
 const contCategoria = document.createElement("div");
 const contCatParrafo = document.createElement("p")
-const contBtn = document.createElement("div")
 
 contEncabezado.className = "encabezado";
 
@@ -25,6 +24,8 @@ contCategoria.append(contCatParrafo)
 
 contEncabezado.append(contCategoria)
 contEncabezado.append(contPregunta)
+
+//creamos los botones con sus respectivas configuraciones
 for(var i = 1; i<=4; i++){
     const contBtn = document.createElement("div")
     contBtn.className = "btn";
@@ -35,26 +36,58 @@ for(var i = 1; i<=4; i++){
 
 contenedor.appendChild(contEncabezado)
 
-var myArray = ['1','2','3','4'];
-var i,j,k;
-for (i = myArray.length; i; i--) {
-    j = Math.floor(Math.random() * i);
-    k = myArray[i - 1];
-    myArray[i - 1] = myArray[j];
-   myArray[j] = k;
-}
-console.log(myArray)
+var preguntaAletoria;
 
-llenarPreguntas();
+function llenarBontones(){
+    //Primero ponemos las posibles respuestas de forma aleatoria
+    var BtnPreguntas = ['1','2','3','4'];
+    var i,j,k;
+    for (i = BtnPreguntas.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        k = BtnPreguntas[i - 1];
+        BtnPreguntas[i - 1] = BtnPreguntas[j];
+        BtnPreguntas[j] = k;
+    }
 
-function llenarPreguntas(){
-    contCatParrafo.textContent = data[0].categoria;
-    contPreParrafo.textContent = data[0].pregunta;
-    getElement("btn"+myArray[0]).textContent = data[0].respuesta;
-    getElement("btn"+myArray[1]).textContent = data[0].incorrecta1;
-    getElement("btn"+myArray[2]).textContent = data[0].incorrecta2;
-    getElement("btn"+myArray[3]).textContent = data[0].incorrecta3;
+    //Luego elegimos una pregunta de forma aleatoria
+    preguntaAletoria = Math.floor(Math.random()*5);
+    //VerificarRespuesta(preguntaAletoria);
+    //Mostramos
+    contCatParrafo.textContent = data[0][preguntaAletoria].categoria;
+    contPreParrafo.textContent = data[0][preguntaAletoria].pregunta;
+    getElement("btn"+BtnPreguntas[0]).textContent = data[0][preguntaAletoria].respuesta;
+    getElement("btn"+BtnPreguntas[1]).textContent = data[0][preguntaAletoria].incorrecta1;
+    getElement("btn"+BtnPreguntas[2]).textContent = data[0][preguntaAletoria].incorrecta2;
+    getElement("btn"+BtnPreguntas[3]).textContent = data[0][preguntaAletoria].incorrecta3;
 }
+
+getElement("btn1").onclick = function(){
+    if((document.getElementById("btn1").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+        console.log("respuesta correcta");
+    }else{
+        console.log("respuesta incorrecta");
+    }};
+getElement("btn2").onclick = function(){
+    if((document.getElementById("btn2").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+        console.log("respuesta correcta");
+    }else{
+        console.log("respuesta incorrecta");
+    }};
+getElement("btn3").onclick = function(){
+    if((document.getElementById("btn3").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+        console.log("respuesta correcta");
+    }else{
+        console.log("respuesta incorrecta");
+    }
+};
+getElement("btn4").onclick = function(){
+    if((document.getElementById("btn4").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+        console.log("respuesta correcta");
+    }else{
+        console.log("respuesta incorrecta");
+    }};
+
+llenarBontones();
 
 /*data.forEach(pregunta => {
     contCatParrafo.textContent = pregunta.categoria;
