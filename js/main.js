@@ -40,7 +40,7 @@ contJugador.id = "jugador_div";
 contJugInput.className = "jugador_input";
 contJugInput.id = "jugador_input";
 contJugInput.required = 'true';
-contJugbtn.className = "btn";
+contJugbtn.className = "btnI";
 contJugbtn.id = "jugador_btn";
 
 contRetirar.className = "btn";
@@ -80,6 +80,7 @@ getElement("retirar_btn").onclick = function(){
     if(usuario.puntaje > 0 && usuario.nombre != ""){
         localStorage.setItem(usuario.nombre, usuario.puntaje)
     }
+    alert("Te has retirado!")
     location.reload();
 }
 
@@ -105,7 +106,7 @@ getElement("jugador_btn").onclick = function(){
         contEncabezado.append(contRetirar)
         contRetirar.style.display = "block";
         llenarBontones();
-
+        
         //Le damos evento a los botones
         getElement("btn1").onclick = function(){
             if((getElement("btn1").textContent).localeCompare(data[nivel][preguntaAletoria].respuesta)==0){
@@ -113,14 +114,16 @@ getElement("jugador_btn").onclick = function(){
                 if(nivel < 4){
                     nivel += 1;
                     usuario.puntaje += 5*nivel;
-                    console.log(nivel)
                     llenarBontones();
                 }
                 else{
-                    localStorage.setItem("usuario", JSON.stringify(usuario))
+                    alert("¡HAS GANADO!")
+                    location.reload();
+                    localStorage.setItem(usuario.nombre, usuario.puntaje)                    
                 }
             }else{
-                console.log("respuesta incorrecta");
+                alert(("¡HAS PERDIDO!"));
+                location.reload();
             }
         };
         getElement("btn2").onclick = function(){
@@ -129,14 +132,16 @@ getElement("jugador_btn").onclick = function(){
                 if(nivel < 4){
                     nivel += 1;
                     usuario.puntaje += 5*nivel;
-                    console.log(nivel)
                     llenarBontones();
                 }
                 else{
-                    localStorage.setItem("usuario", JSON.stringify(usuario))
+                    alert("¡HAS GANADO!")
+                    location.reload();
+                    localStorage.setItem(usuario.nombre, usuario.puntaje)
                 }
             }else{
-                console.log("respuesta incorrecta");
+                alert(("¡HAS PERDIDO!"));
+                location.reload();
             }
         };
         getElement("btn3").onclick = function(){
@@ -145,14 +150,16 @@ getElement("jugador_btn").onclick = function(){
                 if(nivel < 4){
                     nivel += 1;
                     usuario.puntaje += 5*nivel;
-                    console.log(nivel)
                     llenarBontones();
                 }
                 else{
-                    llocalStorage.setItem("usuario", JSON.stringify(usuario))
+                    alert("¡HAS GANADO!")
+                    location.reload();
+                    localStorage.setItem(usuario.nombre, usuario.puntaje)
                 }
             }else{
-                console.log("respuesta incorrecta");
+                alert("¡HAS PERDIDO!")
+                location.reload();
             }
         };
         getElement("btn4").onclick = function(){
@@ -165,10 +172,13 @@ getElement("jugador_btn").onclick = function(){
                     llenarBontones();
                 }
                 else{
-                    localStorage.setItem("usuario", JSON.stringify(usuario))
+                    alert("¡HAS GANADO!")
+                    location.reload();
+                    localStorage.setItem(usuario.nombre, usuario.puntaje)
                 }
             }else{
-                console.log("respuesta incorrecta");
+                alert(("¡HAS PERDIDO!"));
+                location.reload();
             }
         };
     }
