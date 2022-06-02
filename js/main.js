@@ -1,13 +1,21 @@
 import { data } from "./preguntas.js";
 
+var preguntaAletoria;
+var nivel = 0;
+
 const contenedor = document.querySelector(".contenedor");
 const contEncabezado = document.createElement("div");
+const contJugador = document.createElement("input")
+const contJugParrafo = document.createElement("div")
 const contPregunta = document.createElement("div");
-const contPreParrafo = document.createElement("p");
+const contPreParrafo = document.createElement("H3");
 const contCategoria = document.createElement("div");
-const contCatParrafo = document.createElement("p")
+const contCatParrafo = document.createElement("H4");
+const contNivel = document.createElement("div");
+const contNivelParrafo = document.createElement("H4");
 
 contEncabezado.className = "encabezado";
+contEncabezado.id = "encabezado";
 
 contPregunta.className = "pregunta";
 contPregunta.id = "pregunta"
@@ -15,15 +23,22 @@ contPregunta.id = "pregunta"
 contCategoria.className = "categoria";
 contCategoria.id = "categoria";
 
+contNivel.className = "nivel";
+contNivel.id = "nivel";
+
 contPreParrafo.textContent = "Pregunta";
 contCatParrafo.textContent = "Categoria";
 
-
-contPregunta.append(contPreParrafo)
+contNivel.append(contNivelParrafo)
 contCategoria.append(contCatParrafo)
+contPregunta.append(contPreParrafo)
 
+
+contEncabezado.append(contNivel)
 contEncabezado.append(contCategoria)
 contEncabezado.append(contPregunta)
+
+contenedor.appendChild(contEncabezado)
 
 //creamos los botones con sus respectivas configuraciones
 for(var i = 1; i<=4; i++){
@@ -34,12 +49,9 @@ for(var i = 1; i<=4; i++){
     contEncabezado.append(contBtn)
 }
 
-contenedor.appendChild(contEncabezado)
-
-var preguntaAletoria;
-
 function llenarBontones(){
     //Primero ponemos las posibles respuestas de forma aleatoria
+    contNivelParrafo.textContent = "Nivel: "+(nivel+1);
     var BtnPreguntas = ['1','2','3','4'];
     var i,j,k;
     for (i = BtnPreguntas.length; i; i--) {
@@ -53,51 +65,65 @@ function llenarBontones(){
     preguntaAletoria = Math.floor(Math.random()*5);
     //VerificarRespuesta(preguntaAletoria);
     //Mostramos
-    contCatParrafo.textContent = data[0][preguntaAletoria].categoria;
-    contPreParrafo.textContent = data[0][preguntaAletoria].pregunta;
-    getElement("btn"+BtnPreguntas[0]).textContent = data[0][preguntaAletoria].respuesta;
-    getElement("btn"+BtnPreguntas[1]).textContent = data[0][preguntaAletoria].incorrecta1;
-    getElement("btn"+BtnPreguntas[2]).textContent = data[0][preguntaAletoria].incorrecta2;
-    getElement("btn"+BtnPreguntas[3]).textContent = data[0][preguntaAletoria].incorrecta3;
+    contCatParrafo.textContent = data[nivel][preguntaAletoria].categoria;
+    contPreParrafo.textContent = data[nivel][preguntaAletoria].pregunta;
+    getElement("btn"+BtnPreguntas[0]).textContent = data[nivel][preguntaAletoria].respuesta;
+    getElement("btn"+BtnPreguntas[1]).textContent = data[nivel][preguntaAletoria].incorrecta1;
+    getElement("btn"+BtnPreguntas[2]).textContent = data[nivel][preguntaAletoria].incorrecta2;
+    getElement("btn"+BtnPreguntas[3]).textContent = data[nivel][preguntaAletoria].incorrecta3;
 }
 
 getElement("btn1").onclick = function(){
-    if((document.getElementById("btn1").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+    if((getElement("btn1").textContent).localeCompare(data[nivel][preguntaAletoria].respuesta)==0){
         console.log("respuesta correcta");
+        if(nivel < 4){
+            nivel += 1;
+            console.log(nivel)
+            llenarBontones();
+        }
     }else{
         console.log("respuesta incorrecta");
-    }};
+    }
+};
 getElement("btn2").onclick = function(){
-    if((document.getElementById("btn2").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+    if((getElement("btn2").textContent).localeCompare(data[nivel][preguntaAletoria].respuesta)==0){
         console.log("respuesta correcta");
+        if(nivel < 4){
+            nivel += 1;
+            console.log(nivel)
+            llenarBontones();
+        }
     }else{
         console.log("respuesta incorrecta");
-    }};
+    }
+};
 getElement("btn3").onclick = function(){
-    if((document.getElementById("btn3").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+    if((getElement("btn3").textContent).localeCompare(data[nivel][preguntaAletoria].respuesta)==0){
         console.log("respuesta correcta");
+        if(nivel < 4){
+            nivel += 1;
+            console.log(nivel)
+            llenarBontones();
+        }
     }else{
         console.log("respuesta incorrecta");
     }
 };
 getElement("btn4").onclick = function(){
-    if((document.getElementById("btn4").textContent).localeCompare(data[0][preguntaAletoria].respuesta)==0){
+    if((getElement("btn4").textContent).localeCompare(data[nivel][preguntaAletoria].respuesta)==0){
         console.log("respuesta correcta");
+        if(nivel < 4){
+            nivel += 1;
+            console.log(nivel)
+            llenarBontones();
+        }
     }else{
         console.log("respuesta incorrecta");
-    }};
-
-llenarBontones();
-
-/*data.forEach(pregunta => {
-    contCatParrafo.textContent = pregunta.categoria;
-    contPreParrafo.textContent = pregunta.pregunta;
-    getElement("btn"+myArray[0]).textContent = pregunta.respuesta;
-    getElement("btn"+myArray[1]).textContent = pregunta.incorrecta1;
-    getElement("btn"+myArray[2]).textContent = pregunta.incorrecta2;
-    getElement("btn"+myArray[3]).textContent = pregunta.incorrecta3;
-});*/
+    }
+};
 
 function getElement(id){
     return document.getElementById(id);
 }
+
+llenarBontones();

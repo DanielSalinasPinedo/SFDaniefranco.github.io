@@ -27,13 +27,13 @@ body{
 }
 
 .categoria{
-    opacity: 0.3;
+    opacity: 0.5;
     text-align: left;
 }
 
 .pregunta{
     padding: 10px;
-    background-color: aquamarine;
+    background: aquamarine;
 }
 
 .btn{
@@ -47,4 +47,8 @@ body{
     background: orange;
     cursor: pointer;
     transform: scale(1.03);
+}
+
+.btn{
+    background-color: aqua;
 }
