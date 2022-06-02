@@ -9,6 +9,22 @@ body{
     text-align: center;
 }
 
+.jugador_div{
+    border: 1px solid black;
+}
+
+#jugador_btn{
+    margin: 10px;
+    border: 1px solid grey;
+    width: 30%;
+    margin-left: 35%;
+}
+
+#jugador_btn:hover{
+    background-color: greenyellow;
+    cursor: pointer;
+}
+
 .contenedor{
     width: 98vw;
     height: 97vh;
@@ -33,22 +49,17 @@ body{
 
 .pregunta{
     padding: 10px;
-    background: aquamarine;
 }
 
-.btn{
-    background: white;
+#btn1, #btn2, #btn3, #btn4{
+    background: aqua;
     width: 60;
     padding: 10px;
     margin: 5px;
 }
 
-.btn:hover{
+#btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover{
     background: orange;
     cursor: pointer;
     transform: scale(1.03);
-}
-
-.btn{
-    background-color: aqua;
 }
