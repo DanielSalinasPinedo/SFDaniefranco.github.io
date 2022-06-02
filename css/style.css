@@ -13,6 +13,19 @@ body{
     border: 1px solid black;
 }
 
+#retirar_btn{
+    margin: 10px;
+    border: 1px solid black;
+    width: 30%;
+    margin-left: 35%;
+}
+
+#retirar_btn{
+    background-color: crimson;
+    cursor: pointer;
+    border-radius: .5em;
+}
+
 #jugador_btn{
     margin: 10px;
     border: 1px solid grey;
