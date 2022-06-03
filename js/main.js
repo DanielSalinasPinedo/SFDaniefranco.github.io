@@ -122,7 +122,7 @@ getElement("btnTbl").onclick = function(){
 
 getElement("pregunta").style.backgroundColor = "#9A7D0A";
 getElement("retirar_btn").onclick = function(){
-    if(usuario.puntaje > 0 && getElement("jugador_input").value.length == 0){
+    if(usuario.puntaje > 0){
         NJugador = localStorage.length
         localStorage.setItem(NJugador, JSON.stringify(usuario))
     }
