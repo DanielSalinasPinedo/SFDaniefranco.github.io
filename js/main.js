@@ -165,6 +165,7 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
+                    usuario.puntaje += 5*nivel;
                     location.reload();
                     NJugador = localStorage.length
                     localStorage.setItem(NJugador, JSON.stringify(usuario))                   
@@ -184,9 +185,10 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload()
+                    usuario.puntaje += 5*nivel;
+                    location.reload();
                     NJugador = localStorage.length
-                    localStorage.setItem(NJugador, JSON.stringify(usuario))
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))  
                 }
             }else{
                 alert(("¡HAS PERDIDO!"));
@@ -203,9 +205,10 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload()
+                    usuario.puntaje += 5*nivel;
+                    location.reload();
                     NJugador = localStorage.length
-                    localStorage.setItem(NJugador, JSON.stringify(usuario))
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))  
                 }
             }else{
                 alert("¡HAS PERDIDO!")
@@ -223,9 +226,10 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload()
+                    usuario.puntaje += 5*nivel;
+                    location.reload();
                     NJugador = localStorage.length
-                    localStorage.setItem(NJugador, JSON.stringify(usuario))
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))  
                 }
             }else{
                 alert(("¡HAS PERDIDO!"));
