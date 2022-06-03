@@ -2,6 +2,7 @@ import { data } from "./preguntas.js";
 
 var preguntaAletoria;
 var nivel = 0;
+var NJugador = localStorage.length;
 var usuario = {
     nombre: "",
     puntaje: 0
@@ -22,6 +23,24 @@ const contNivelParrafo = document.createElement("H4");
 const contRetirar = document.createElement("div")
 const contRetBtn = document.createElement("div")
 
+const contTbl = document.createElement('table')
+const contTr = document.createElement('tr')
+const contTblBtn = document.createElement("div")
+
+const contThName = document.createElement('th')
+const contThPuntaje = document.createElement('th')
+
+contTblBtn.textContent = "Puntaje"
+contThName.textContent = "Nombre"
+contThPuntaje.textContent = "Puntaje"
+
+contEncabezado.appendChild(contTblBtn)
+
+contTblBtn.className = "btnTbl"
+contTblBtn.id = "btnTbl"
+
+contThName.className = "th"
+contThPuntaje.className = "th"
 
 contEncabezado.className = "encabezado";
 contEncabezado.id = "encabezado";
@@ -74,11 +93,38 @@ iniciar();
 
 contenedor.appendChild(contEncabezado)
 
+//Mostrar puntaje
+getElement("btnTbl").onclick = function(){
+    getElement("jugador_div").style.display = "none";
+    contTbl.append(contTr)
+    contTr.append(contThName, contThPuntaje)
+    contEncabezado.appendChild(contTbl)
+    contTblBtn.textContent = "Volver"
+    contTblBtn.id = "back"
+
+    if(localStorage.getItem("0")){
+        for(var i = 0; i<localStorage.length; i++){
+            const contTblTr = document.createElement("tr");
+            for(const key in JSON.parse(localStorage.getItem(i))){
+               const contTbltd = document.createElement("td")
+               contTbltd.textContent = JSON.parse(localStorage.getItem(i))[key]
+               contTblTr.append(contTbltd)
+            }            
+            contTbl.append(contTblTr)
+        }
+    }
+
+    getElement("back").onclick = function(){
+        location.reload()
+    }
+}
+
 getElement("pregunta").style.backgroundColor = "#9A7D0A";
 //getElement("retirar_btn").onclick = function(){
 getElement("retirar_btn").onclick = function(){
     if(usuario.puntaje > 0 && usuario.nombre != ""){
-        localStorage.setItem(usuario.nombre, usuario.puntaje)
+        NJugador = localStorage.length
+        localStorage.setItem(NJugador, JSON.stringify(usuario))
     }
     alert("Te has retirado!")
     location.reload();
@@ -90,6 +136,7 @@ getElement("jugador_btn").onclick = function(){
     }
     else{
         getElement("jugador_div").style.display = "none";
+        getElement("btnTbl").style.display = "none";
         getElement("pregunta").style.background = "aquamarine";
 
         usuario.nombre = getElement("jugador_input").value;
@@ -119,7 +166,8 @@ getElement("jugador_btn").onclick = function(){
                 else{
                     alert("¡HAS GANADO!")
                     location.reload();
-                    localStorage.setItem(usuario.nombre, usuario.puntaje)                    
+                    NJugador = localStorage.length
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))                   
                 }
             }else{
                 alert(("¡HAS PERDIDO!"));
@@ -136,8 +184,9 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload();
-                    localStorage.setItem(usuario.nombre, usuario.puntaje)
+                    location.reload()
+                    NJugador = localStorage.length
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))
                 }
             }else{
                 alert(("¡HAS PERDIDO!"));
@@ -154,8 +203,9 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload();
-                    localStorage.setItem(usuario.nombre, usuario.puntaje)
+                    location.reload()
+                    NJugador = localStorage.length
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))
                 }
             }else{
                 alert("¡HAS PERDIDO!")
@@ -173,8 +223,9 @@ getElement("jugador_btn").onclick = function(){
                 }
                 else{
                     alert("¡HAS GANADO!")
-                    location.reload();
-                    localStorage.setItem(usuario.nombre, usuario.puntaje)
+                    location.reload()
+                    NJugador = localStorage.length
+                    localStorage.setItem(NJugador, JSON.stringify(usuario))
                 }
             }else{
                 alert(("¡HAS PERDIDO!"));
@@ -206,6 +257,10 @@ function llenarBontones(){
     getElement("btn"+BtnPreguntas[1]).textContent = data[nivel][preguntaAletoria].incorrecta1;
     getElement("btn"+BtnPreguntas[2]).textContent = data[nivel][preguntaAletoria].incorrecta2;
     getElement("btn"+BtnPreguntas[3]).textContent = data[nivel][preguntaAletoria].incorrecta3;
+}
+
+function llenarTabla(){
+    var tbdoy = document.querySelector("")
 }
 
 //Esto lo hice por comodidad propia, para obtener el objeto como tal

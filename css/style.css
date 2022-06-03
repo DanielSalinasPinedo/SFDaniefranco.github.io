@@ -20,6 +20,10 @@ body{
     margin-left: 35%;
 }
 
+.th{
+    border: 1px solid black;
+}
+
 #retirar_btn{
     background-color: crimson;
     cursor: pointer;
@@ -31,6 +35,13 @@ body{
     border: 1px solid grey;
     width: 30%;
     margin-left: 35%;
+}
+
+.btnTbl{
+    background-color: grey;
+    cursor: pointer;
+    width: 20%;
+    border: 1px solid black;
 }
 
 #jugador_btn:hover{
