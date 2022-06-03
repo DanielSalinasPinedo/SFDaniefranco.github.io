@@ -102,6 +102,7 @@ getElement("btnTbl").onclick = function(){
     contTblBtn.textContent = "Volver"
     contTblBtn.id = "back"
 
+    //Mostrar puntaje en la tabla
     if(localStorage.getItem("0")){
         for(var i = 0; i<localStorage.length; i++){
             const contTblTr = document.createElement("tr");
@@ -120,7 +121,6 @@ getElement("btnTbl").onclick = function(){
 }
 
 getElement("pregunta").style.backgroundColor = "#9A7D0A";
-//getElement("retirar_btn").onclick = function(){
 getElement("retirar_btn").onclick = function(){
     if(usuario.puntaje > 0 && usuario.nombre != ""){
         NJugador = localStorage.length
@@ -261,10 +261,6 @@ function llenarBontones(){
     getElement("btn"+BtnPreguntas[1]).textContent = data[nivel][preguntaAletoria].incorrecta1;
     getElement("btn"+BtnPreguntas[2]).textContent = data[nivel][preguntaAletoria].incorrecta2;
     getElement("btn"+BtnPreguntas[3]).textContent = data[nivel][preguntaAletoria].incorrecta3;
-}
-
-function llenarTabla(){
-    var tbdoy = document.querySelector("")
 }
 
 //Esto lo hice por comodidad propia, para obtener el objeto como tal
